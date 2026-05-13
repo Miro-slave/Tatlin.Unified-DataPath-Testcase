@@ -1,0 +1,10 @@
+{
+  "move_to_begin": 5,
+  "move_to_end": 5,
+  "move_right": 3,
+  "move_left": 3,
+  "read": 2,
+  "write": 2,
+  "size": 1,
+  "m": 6
+}
