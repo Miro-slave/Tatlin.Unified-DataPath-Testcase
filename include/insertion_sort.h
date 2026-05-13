@@ -1,7 +1,3 @@
-//
-// Created by YF on 12.05.2026.
-//
-
 #include "sorting_algorithm.h"
 
 #ifndef TESTCASE1_INSERTION_SORT_H
@@ -16,8 +12,8 @@ namespace tape {
               std::vector<std::unique_ptr<ITape<T>>>& temp_tapes,
               std::unique_ptr<IRam<T>>& ram) override
     {
-      if (ram->size() < 4) {
-        throw std::runtime_error("Insertion sort requires at least 4 RAM cells");
+      if (ram->size() < 5) {
+        throw std::runtime_error("Insertion sort requires at least 5 RAM cells");
       }
 
       ram->write(INPUT_LEN, static_cast<T>(input_tape->size())); // Initialization
@@ -60,7 +56,6 @@ namespace tape {
         output_tape->write(input_tape->read());
         input_tape->moveRight();
         output_tape->moveRight();
-        std::cout << input_tape->read() << '\n';
         ram->write(INDEX_I, ram->read(INDEX_I) + 1);
       }
     };

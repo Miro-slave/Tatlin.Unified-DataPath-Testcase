@@ -3,7 +3,7 @@
 #include "duration_counter.h"
 #include "insertion_sort.h"
 
-#include <cassert>
+#include <iostream>
 
 namespace tape {
   Application::Application(int argc, char *argv[]) {
@@ -22,7 +22,7 @@ namespace tape {
     std::string output_file_path = argv[2];
 
     if (argc == 3) {
-      m_ = 4;
+      m_ = 5;
       duration_counter_ = std::make_shared<DummyCounter>();
     } else if (argc == 4) {
       std::string config_file_path = argv[3];

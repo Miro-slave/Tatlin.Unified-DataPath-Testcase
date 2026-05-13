@@ -1,15 +1,7 @@
-//
-// Created by YF on 12.05.2026.
-//
-
-#include <algorithm>
 #include <cstddef>
 #include <filesystem>
-#include <fstream>
 #include <iterator>
-#include <iostream>
 #include <vector>
-#include <memory>
 
 #ifndef TESTCASE1_RAM_H
 #define TESTCASE1_RAM_H

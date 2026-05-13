@@ -1,15 +1,9 @@
-//
-// Created by YF on 12.05.2026.
-//
-
 #include "duration_counter.h"
 
-#include <algorithm>
 #include <cstddef>
 #include <filesystem>
 #include <fstream>
 #include <iterator>
-#include <iostream>
 #include <vector>
 #include <memory>
 

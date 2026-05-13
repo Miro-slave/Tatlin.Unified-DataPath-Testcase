@@ -1,7 +1,3 @@
-//
-// Created by YF on 12.05.2026.
-//
-
 #include "ram.h"
 #include "tape.h"
 

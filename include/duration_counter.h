@@ -1,7 +1,3 @@
-//
-// Created by YF on 12.05.2026.
-//
-
 #include <nlohmann/json.hpp>
 
 #include <cstddef>
