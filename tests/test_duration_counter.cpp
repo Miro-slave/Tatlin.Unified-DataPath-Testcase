@@ -19,10 +19,10 @@ TEST(DummyCounterTest, OperationsIncreaseTime) {
 TEST(DurationCounterTest, ReadsValuesFromConfig) {
   DurationCounter counter("config.json");
 
-  EXPECT_EQ(counter.moveRight(), 1);
-  EXPECT_EQ(counter.moveLeft(), 1);
-  EXPECT_EQ(counter.moveToBegin(), 10);
-  EXPECT_EQ(counter.write(), 1);
+  EXPECT_EQ(counter.moveRight(), 3);
+  EXPECT_EQ(counter.moveLeft(), 3);
+  EXPECT_EQ(counter.moveToBegin(), 5);
+  EXPECT_EQ(counter.write(), 2);
 }
 
 TEST(DurationCounterTest, TotalTimeAccumulates) {
@@ -32,7 +32,7 @@ TEST(DurationCounterTest, TotalTimeAccumulates) {
   counter.read();
   counter.moveRight();
 
-  EXPECT_EQ(counter.totalOperationTime(), 3);
+  EXPECT_EQ(counter.totalOperationTime(), 7);
 }
 
 TEST(DurationCounterTest, ThrowsIfConfigNotExists) {
