@@ -14,6 +14,8 @@ namespace tape {
   template <typename T>
   class ISortingAlgorithm {
   public:
+    virtual ~ISortingAlgorithm() = default;
+
     virtual void sort(std::unique_ptr<ITape<T>>& input_tape,
               std::unique_ptr<ITape<T>>& output_tape,
               std::vector<std::unique_ptr<ITape<T>>>& temp_tapes,

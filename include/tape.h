@@ -2,6 +2,8 @@
 // Created by YF on 12.05.2026.
 //
 
+#include "duration_counter.h"
+
 #include <algorithm>
 #include <cstddef>
 #include <filesystem>
@@ -45,10 +47,36 @@ namespace tape {
         data_.push_back(*ifs_it);
         ifs.ignore(1, ',');
       }
+
+      duration_counter_ = std::make_shared<DummyCounter>();
+    };
+
+    template <typename String>
+    FileTape(String&& file_name,
+             std::shared_ptr<IDurationCounter>& duration_counter) : file_name_(file_name),
+                                                                     current_index_(0),
+                                                                     duration_counter_(duration_counter)
+    {
+      std::ifstream ifs(file_name_);
+
+      if (!ifs.is_open()) {
+        throw std::runtime_error("Cannot access the " + file_name_ + " file");
+      }
+
+      std::istream_iterator<T> ifs_it(ifs);
+
+      for (; ifs_it != std::istream_iterator<T>(); ++ifs_it) {
+        data_.push_back(*ifs_it);
+        ifs.ignore(1, ',');
+      }
     };
 
     ~FileTape() override {
       std::ofstream ofs(file_name_, std::ios::trunc);
+
+      if (!ofs.is_open()) {
+        throw std::runtime_error("Cannot access the " + file_name_ + " file");
+      }
 
       std::ostream_iterator<int> ofs_it(ofs, ",");
 
@@ -60,43 +88,57 @@ namespace tape {
 
     void moveToBegin() override {
       current_index_ = 0;
+      duration_counter_->moveToBegin();
     };
 
     void moveToEnd() override {
       current_index_ = data_.size() - 1;
+      duration_counter_->moveToEnd();
     };
 
     void moveRight() override {
       if (current_index_ < data_.size() - 1) {
         ++current_index_;
       }
+
+      duration_counter_->moveRight();
     };
 
     void moveLeft() override {
       if (current_index_) {
         current_index_--;
       }
+
+      duration_counter_->moveLeft();
     };
 
 
     T read() override {
+      duration_counter_->read();
+
       return data_[current_index_];
     };
 
     void write(T value) override {
       data_[current_index_] = value;
+      duration_counter_->write();
     };
 
     std::size_t size() override {
+      duration_counter_->size();
+
       return data_.size();
     };
 
-    virtual std::size_t totalOperationTime() override { return 0; };
+    std::size_t totalOperationTime() override {
+      return duration_counter_->totalOperationTime();
+    };
 
   private:
     std::string file_name_;
     std::vector<T> data_;
     std::size_t current_index_;
+    std::shared_ptr<IDurationCounter> duration_counter_;
   };
 };
 

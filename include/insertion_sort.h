@@ -10,12 +10,16 @@
 namespace tape {
   template <typename T>
   class InsertionSort : public ISortingAlgorithm<T> {
-  public:
+   public:
     void sort(std::unique_ptr<ITape<T>>& input_tape,
               std::unique_ptr<ITape<T>>& output_tape,
               std::vector<std::unique_ptr<ITape<T>>>& temp_tapes,
               std::unique_ptr<IRam<T>>& ram) override
     {
+      if (ram->size() < 4) {
+        throw std::runtime_error("Insertion sort requires at least 4 RAM cells");
+      }
+
       ram->write(INPUT_LEN, static_cast<T>(input_tape->size())); // Initialization
       ram->write(ITERATION, 1);
       ram->write(INDEX_I, 0);

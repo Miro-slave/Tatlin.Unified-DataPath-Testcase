@@ -41,11 +41,11 @@ namespace tape {
       data_[index] = value;
     };
 
-    virtual std::size_t size() override {
+    std::size_t size() override {
       return data_.size();
     };
 
-    virtual std::size_t totalOperationTime() override { return 0; };
+    std::size_t totalOperationTime() override { return 0; };
 
   private:
     std::vector<T> data_;

@@ -4,13 +4,9 @@ add_executable(tests
 
 find_package(GTest)
 
-target_link_libraries(tests gtest::gtest
+target_link_libraries(tests
+        gtest::gtest
         tape_lib)
-
-target_include_directories(tests
-        PUBLIC
-        ${PROJECT_SOURCE_DIR}/include
-)
 
 configure_file(
         ${CMAKE_SOURCE_DIR}/samples/input_tape.csv
