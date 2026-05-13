@@ -18,7 +18,7 @@ Project uses Conan for package management.
 
 You can build project via build_unix.sh and build_windows.sh script correspondingly.
 
-(build_windows.sh works with visual studio 15 toolchain)
+(build_windows.sh works with Visual Studio 15 toolchain)
 
 **Example of work:**
 
