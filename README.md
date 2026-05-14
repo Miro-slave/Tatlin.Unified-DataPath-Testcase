@@ -2,6 +2,7 @@
 
 ## CLI usage options:
 
+
 ```
   tape_app <input fle path> <output file path>
 ```
