@@ -16,7 +16,7 @@ namespace tape {
       throw std::runtime_error("Invalid arguments count");
     }
 
-    sorting_algorithm_ = std::make_unique<InsertionSort<std::uint32_t>>();
+    sorting_algorithm_ = std::make_unique<InsertionSort<std::int32_t>>();
 
     std::string input_file_path = argv[1];
     std::string output_file_path = argv[2];
@@ -39,16 +39,16 @@ namespace tape {
       duration_counter_ = std::make_shared<DurationCounter>(config_file_path);
     }
 
-    input_tape_ = std::make_unique<FileTape<std::uint32_t>>(input_file_path, duration_counter_);
-    output_tape_ = std::make_unique<FileTape<std::uint32_t>>(output_file_path, duration_counter_);
+    input_tape_ = std::make_unique<FileTape<std::int32_t>>(input_file_path, duration_counter_);
+    output_tape_ = std::make_unique<FileTape<std::int32_t>>(output_file_path, duration_counter_);
 
     if (input_tape_->size() != output_tape_->size()) {
       throw std::runtime_error("Input and output files has different sizes");
     }
 
-    std::vector<std::uint32_t> ram_data(m_, 0);
+    std::vector<std::int32_t> ram_data(m_, 0);
 
-    ram_ = std::make_unique<VectorRam<std::uint32_t>>(ram_data);
+    ram_ = std::make_unique<VectorRam<std::int32_t>>(ram_data);
   }
 
   void Application::run() {
