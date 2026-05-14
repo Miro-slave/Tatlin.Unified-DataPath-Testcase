@@ -22,7 +22,7 @@ You can find example files in the ./samples directory.
 
 Project uses Conan for package management.
 
-You can build project via build_unix.sh and build_windows.sh script correspondingly.
+You can build project via build_unix.sh and build_windows.sh scripts correspondingly.
 
 (build_windows.sh works with visual studio 15 toolchain)
 
