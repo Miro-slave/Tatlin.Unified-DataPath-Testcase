@@ -40,7 +40,7 @@ namespace tape {
     }
 
     input_tape_ = std::make_unique<FileTape<std::int32_t>>(input_file_path, duration_counter_);
-    output_tape_ = std::make_unique<FileTape<std::int32_t>>(output_file_path, duration_counter_);
+    output_tape_ = std::make_unique<FileTape<std::int32_t>>(output_file_path, duration_counter_, true);
 
     if (input_tape_->size() != output_tape_->size()) {
       throw std::runtime_error("Input and output files has different sizes");

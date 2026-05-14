@@ -30,8 +30,10 @@ namespace tape {
   class FileTape : public ITape<T> {
   public:
     template <typename String>
-    FileTape(String&& file_name) : file_name_(file_name),
-                                   current_index_(0)
+    FileTape(String&& file_name,
+             bool rewrite_file = false) : file_name_(file_name),
+                                          current_index_(0),
+                                          rewrite_file_(rewrite_file)
     {
       std::ifstream ifs(file_name_);
 
@@ -47,9 +49,11 @@ namespace tape {
 
     template <typename String>
     FileTape(String&& file_name,
-             std::shared_ptr<IDurationCounter>& duration_counter) : file_name_(file_name),
-                                                                     current_index_(0),
-                                                                     duration_counter_(duration_counter)
+             std::shared_ptr<IDurationCounter>& duration_counter,
+             bool rewrite_file = false) : file_name_(file_name),
+                                          current_index_(0),
+                                          duration_counter_(duration_counter),
+                                          rewrite_file_(rewrite_file)
     {
       std::ifstream ifs(file_name_);
 
@@ -66,17 +70,19 @@ namespace tape {
     };
 
     ~FileTape() override {
-      std::ofstream ofs(file_name_, std::ios::trunc);
+      if (rewrite_file_) {
+        std::ofstream ofs(file_name_, std::ios::trunc);
 
-      if (!ofs.is_open()) {
-        throw std::runtime_error("Cannot access the " + file_name_ + " file");
-      }
+        if (!ofs.is_open()) {
+          throw std::runtime_error("Cannot access the " + file_name_ + " file");
+        }
 
-      std::ostream_iterator<int> ofs_it(ofs, ",");
+        std::ostream_iterator<int> ofs_it(ofs, ",");
 
-      for (T element : data_) {
-        *ofs_it = element;
-        ++ofs_it;
+        for (T element : data_) {
+          *ofs_it = element;
+          ++ofs_it;
+        }
       }
     };
 
@@ -133,6 +139,7 @@ namespace tape {
     std::vector<T> data_;
     std::size_t current_index_;
     std::shared_ptr<IDurationCounter> duration_counter_;
+    bool rewrite_file_;
   };
 };
 
