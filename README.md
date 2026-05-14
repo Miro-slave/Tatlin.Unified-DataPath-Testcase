@@ -35,4 +35,4 @@ nlohmann_json/3.12.0
 
 ## Example of work:
 
-<img width="1065" height="83" alt="image" src="https://github.com/user-attachments/assets/8b70876c-4c92-4cc4-b708-2c413eae92ec" />
+<img width="1125" height="119" alt="yadro-testcase-program-output_screenshot" src="https://github.com/user-attachments/assets/1ac06e07-3e37-4937-81e7-4d95a288cd43" />
