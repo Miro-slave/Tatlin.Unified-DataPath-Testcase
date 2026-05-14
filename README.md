@@ -2,11 +2,11 @@
 
 ## CLI usage options:
 
-```http
+```
   tape_app <input fle path> <output file path>
 ```
 
-```http
+```
   tape_app <input fle path> <output file path> <config file path>
 ```
 
