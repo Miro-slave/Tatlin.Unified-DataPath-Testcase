@@ -159,22 +159,22 @@ TEST(CannotAccessFileConstructorExceptionTest, ThrowsWhenFileDoesNotExist) {
   std::shared_ptr<IDurationCounter> counter = std::make_shared<DummyCounter>();
 
   EXPECT_THROW(
-    FileTape<std::int32_t>("  missing_file.csv", false),
+    FileTape<std::int32_t>("missing_file.csv", false),
     std::runtime_error
   );
 
   EXPECT_THROW(
-    FileTape<std::int32_t>("  missing_file.csv", true),
+    FileTape<std::int32_t>("missing_file.csv", true),
     std::runtime_error
   );
 
   EXPECT_THROW(
-    FileTape<std::int32_t>("  missing_file.csv", counter, false),
+    FileTape<std::int32_t>("missing_file.csv", counter, false),
     std::runtime_error
   );
 
   EXPECT_THROW(
-    FileTape<std::int32_t>("  missing_file.csv", counter, true),
+    FileTape<std::int32_t>("missing_file.csv", counter, true),
     std::runtime_error
   );
 }
