@@ -2,6 +2,7 @@ add_executable(tests
         test_ram.cpp
         test_duration_counter.cpp
         test_insertion_sort.cpp
+        test_tape.cpp
 )
 
 find_package(GTest)

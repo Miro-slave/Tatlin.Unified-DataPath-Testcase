@@ -37,6 +37,10 @@ namespace tape {
     {
       std::ifstream ifs(file_name_);
 
+      if (!ifs.is_open()) {
+        throw std::runtime_error("Cannot access the " + file_name_ + " file");
+      }
+
       std::istream_iterator<T> ifs_it(ifs);
 
       for (; ifs_it != std::istream_iterator<T>(); ++ifs_it) {

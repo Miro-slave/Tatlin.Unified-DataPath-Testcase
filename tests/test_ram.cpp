@@ -5,9 +5,9 @@
 using namespace tape;
 
 TEST(VectorRamTest, ReadWriteWorks) {
-  std::vector<std::uint32_t> data = {1, 2, 3};
+  std::vector<std::int32_t> data = {1, 2, 3};
 
-  VectorRam<std::uint32_t> ram(data);
+  VectorRam<std::int32_t> ram(data);
 
   EXPECT_EQ(ram.read(0), 1);
   EXPECT_EQ(ram.read(1), 2);
